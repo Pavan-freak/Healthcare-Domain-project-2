@@ -1,0 +1,42 @@
+kind: Deployment
+apiVersion: v1
+metadata:
+  name: myproject2-deployment
+spec:
+  replicas: 3
+  minReadySeconds: 
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1  
+      maxSurge: 1        
+  selector:
+    matchLabels:
+      app: myproject2
+  template:
+    metadata:
+      name: myproject2
+      labels:
+        app: myproject2
+    spec:
+      containers:
+       - name: healthcare
+         image: pavan1432/myproject2:1.0
+         ports:
+         - containerPort: 3000
+
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+   name: myproject2-svc
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector: 
+    app: myproject2
+         
