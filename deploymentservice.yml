@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app
+  name: myproject2
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: myproject2
   template:
     metadata:
       labels:
-        app: my-app
+        app: myproject2
     spec:
       containers:
-      - name: my-app-container
-        image: my-app-image:latest 
+      - name: myproject2
+        image: myproject2:1.0
         ports:
         - containerPort: 8082 
 
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-app-service
+  name: myproject2-service
 spec:
   type: NodePort
   selector:
